@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Editar Revisiones</h2>
+<form method="POST" >
+    <div class="mb-3">
+        <label>Codigo</label>
+        <input type="number" name="codigo" class="form-control" value="{{ revision['codigo'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label>Matricula del coche</label>
+        <input type="text" name="matricula_coche" class="form-control" value="{{ revision['matricula_coche'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label>Filtro</label>
+        <input type="text" name="filtro" class="form-control" value="{{ revision['filtro'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label>Aceite</label>
+        <input type="number" name="aceite" class="form-control" value="{{ revision['aceite'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label>Frenos</label>
+        <input type="text" name="frenos" class="form-control" value="{{ revision['frenos'] }}" required>
+    </div>
+    
+   
+    
+    <button type="submit" class="btn btn-success">Actualizar</button>
+</form>
+
+
+{% endblock %}

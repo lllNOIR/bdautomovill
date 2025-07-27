@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>codigo</th>
+            <th>matricula_coche</th>
+            <th>filtro</th>
+            <th>aceite</th>
+            <th>frenos</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for revision in revisiones %}
+        <tr>
+            <td>{{ revision['codigo'] }}</td>
+            <td>{{ revision['matricula_coche'] }}</td>
+            <td>{{ revision['filtro'] }}</td>
+            <td>{{ revision['aceite'] }}</td>
+            <td>{{ revision['frenos'] }}</td>
+        </tr>
+        <td>
+            <a href="{{ url_for('editaREV', codigo=revision['codigo']) }}" class="btn btn-warning">Editar</a>
+            <form action="{{ url_for('eliminaREV', codigo=revision['codigo']) }}" method="post" style="display:inline-block;">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </td>
+        {% else %}
+        <tr><td colspan="5">No hay revision registrado.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

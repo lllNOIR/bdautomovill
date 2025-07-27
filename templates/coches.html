@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<table class="table table-striped">
+    <tr>
+            <th>Matricula</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Color</th>
+            <th>Precio</th>
+            <th>Nif del cliente</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for coche in coches %}
+        <tr>
+            <td>{{ coche['matricula'] }}</td>
+            <td>{{ coche['marca'] }}</td>
+            <td>{{ coche['modelo'] }}</td>
+            <td>{{ coche['color'] }}</td>
+            <td>{{ coche['precio'] }}</td>
+            <td>{{ coche['nif_cliente'] }}</td>
+            <td>
+                <a href="{{ url_for('editaCOC', matricula=coche['matricula']) }}" class="btn btn-warning btn-sm">Editar</a>
+                <form action="{{ url_for('eliminaCOC', matricula=coche['matricula']) }}" method="post" style="display:inline-block;">
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+        </td>
+        {% else %}
+        <tr><td colspan="2">No hay coche registrado.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+          <tr>
+            <th>NIF</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente['nif'] }}</td>
+            <td>{{ cliente['nombre'] }}</td>
+            <td>{{ cliente['direccion'] }}</td>
+            <td>{{ cliente['telefono'] }}</td>
+        </tr>
+
+        <td>
+            <a href="{{ url_for('editaPAC', nif=cliente['nif']) }}" class="btn btn-warning">Editar</a>
+            <form action="{{ url_for('elimina', nif=cliente['nif']) }}" method="post" style="display:inline-block;">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </td>
+        
+        {% else %}
+        <tr><td colspan="5">No hay clientes registrados.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
